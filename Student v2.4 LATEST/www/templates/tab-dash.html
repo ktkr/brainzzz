@@ -1,0 +1,160 @@
+﻿<ion-view view-title="Dashboard" hide-nav-bar="true">
+	<div class="bar bar-header bar-dark item-icon-right">
+		<img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+	</div>
+	<ion-content style="position:absolute; top:40px;">
+<!-- This page is so long I got v annoyed scrolling so I tried to organise and comment it nicely -->
+
+<!-- Not logged in notice (shouldn't happen in actual app but just leaving here first) -->
+	<div ng-hide="specialLogin" style="color:grey; text-align:center;"><br><br>*You are not logged in.<br>Note that session will not be saved.</div>
+
+
+<!-- Headset status indicator -->
+        <br>
+        <h4 style="text-align:center;">Headset status:</h4>
+        <h4 style="text-align:center;" class="balanced" ng-show="connectionStatus">{{header}}</h4>
+        <h4 style="text-align:center;" class="assertive" ng-hide="connectionStatus">{{header}}</h4>
+        <br />
+        <br />
+<!-- IP address input -->
+        <div ng-hide="connectionStatus">
+            <center>
+                    <label style="text-align:center">
+                        Enter IP-Address of the ESP8266:
+                    </label>
+            </center>
+            <br />
+            <br />
+
+            <div>
+                
+                <form class="list list-inset" style="margin:auto;" ng-submit="connect()">
+                    
+                    <label class="item item-input" style="border-color:#cce9ed;">
+                        
+                        <input type="text" placeholder="192" ng-model="login.IPAddress1">. <!--still lacks an instant tab refresh when connect() is called, this is due to the delayed callback after connection-->
+                        
+                        <input type="text" placeholder="168" ng-model="login.IPAddress2">.
+                       
+                         <input type="text" placeholder="43" ng-model="login.IPAddress3">.
+                        
+                        <input type="text" placeholder="129" ng-model="login.IPAddress4">
+                    
+                    </label>
+                    
+                    <button class="button button-balanced button-block" type="submit">
+                        Connect
+                    </button>
+                
+                </form>
+            </div>
+        </div>
+
+
+<!-- LED controller -->
+			<div ng-show="connectionStatus">
+					<!--<div> not needed now since we don't need to test LED
+							<button class="button button-balanced button-block" ng-click="ledOn()">
+									LED ON (actually off)
+							</button>
+					</div> 
+					<div>
+							<button class="button button-positive button-block" ng-click="ledOff()">
+									LED OFF (actually on)
+							</button>
+					</div>-->
+
+
+                <!-- Start new session form -->
+                <form class="list" ng-hide="sessionOngoing">
+                    <label class="item item-input">
+                        <input type="text" ng-model="activity" placeholder="Lesson or activity (eg. Math class)">
+                    </label>
+
+                    <button class="button button-calm button-block" ng-click="startSession(activity)">
+                        Start new session
+                    </button>
+                </form>
+
+
+                <!-- Current session info (list style) -->
+                <div ng-show="sessionOngoing">
+                    <div class="list" style="text-align:center">
+                        <div class="item item-divider">
+                            Current Session- {{ activity }}
+                        </div>
+
+                        <div class="item">Start time: {{ startTime ? (startTime | date : 'd MMM yyyy, h:mma') : '--' }}</div>
+
+                        <div class="item">
+                            <!-- it got complicated when I tried to format it nicely -->
+                            Run Time: {{ runTimeH ? (runTimeH >= 10 ? runTimeH : ('0'+runTimeH)) : '00'}}:{{ runTimeM ? (runTimeM >= 10 ? runTimeM : ('0'+runTimeM)) : '00'}}:{{ runTimeS ? (runTimeS >= 10 ? runTimeS : ('0'+runTimeS)) : '00'}}
+                        </div>
+
+                        <div class="item item-icon">
+                            <i style="transition: 1s; color:#{{ attention > 75? '33cd5f' : ( attention>50? 'BFE600': (attention>25? 'FBAB0E':'ef473a'))}}" class="icon ion-android-bulb"></i>
+                            Attention: {{ attention | number : 0}}%
+                        </div>
+                    </div>
+
+                    <button class="button button-dark button-block" style="width:80%" ng-click="endSession()">
+                        End current session
+                    </button>
+                </div>
+
+
+                <!-- Previous session graph and info (graphics style) -->
+                <div style="display:{{graphDisplay}}">
+                    <div class="item item-divider" style="text-align:center;">
+                        Previous Session- {{ activity }}
+                    </div>
+
+                    <div style="height:25vh; margin:10px;">
+                        <nvd3 options="vm.options" data="vm.data"></nvd3>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="attncircle" style="background: #{{ attn.high.col }};">{{ attn.high.value }}</span>
+                            <p class="smalltext"><br>High<br>({{ attn.high.time }}h)</p>
+                        </div>
+                        <div class="col">
+                            <span class="attncircle" style="background: #{{ attn.avg.col }};">{{ attn.avg.value }}</span>
+                            <p class="smalltext"><br>Session average</p>
+                        </div>
+                        <div class="col">
+                            <span class="attncircle" style="background: #{{ attn.low.col }};">{{ attn.low.value > 10? attn.low.value : "&nbsp;"+attn.low.value+"&nbsp;" }}</span>
+                            <p class="smalltext"><br>Low<br>({{ attn.low.time }}h)</p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="text-align:center; width:270px;">
+                        <div class="col" style="border-right:1px solid #ddd">
+                            {{ startTime | date : 'd MMM, HHmm' }}h
+                            <p class="smalltext">Start time</p>
+                        </div>
+                        <div class="col">
+                            {{ runTime/60 | number:0 }}min {{ runTime%60 }}s
+                            <p class="smalltext">Run time</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+					<div>
+                        <button class="button button-assertive button-block" ng-click="disconnect()" style="width:40%; margin:auto;">
+                            Disconnect
+                        </button>
+					</div>
+			</div>
+
+
+
+
+
+	</ion-content>
+</ion-view>

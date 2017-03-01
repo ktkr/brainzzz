@@ -1,0 +1,15 @@
+<ion-view view-title="{{ studentName }}'s Sessions">
+
+  <ion-content style="position:absolute; top:40px;">
+    <ion-list>
+      <div class="item item-header">
+        <h2>Select session to view:</h2>
+      </div>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="sess in sessionList" type="item-text-wrap" href="#/tab/Students/Session/{{sess.number}}">
+        <p>{{ sess.activity }} ({{ sess.startTime | date : 'd MMM yyyy, h:mma'}})</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+    <div ng-hide="specialLogin" style="color:grey; text-align:center;"><br><br>No sessions found. Please login.</div>
+  </ion-content>
+</ion-view>

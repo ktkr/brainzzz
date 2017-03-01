@@ -1,0 +1,43 @@
+<ion-view view-title="Past sessions" hide-nav-bar="true">
+  <div class="bar bar-header bar-dark item-icon-right">
+    <img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+    <h1 class="title"></h1> 
+    <button class="button button-icon ion-android-add" style="opacity:{{opacity}}; transition: 1s opacity;" ng-click=""></button>
+  </div>
+  <ion-content style="position:absolute; top:40px;">
+
+
+    <!-- <br>
+    <h4 style="text-align:center;">View past session</h4>
+    <form class="list list-inset" ng-hide="sessionOngoing" style="background:inherit;">
+      <label class="item item-input">
+      <input type="text" ng-model="activity" placeholder="Lesson or activity (eg. Math class)">
+      </label>
+    
+    <button class="button button-balanced button-block" ng-click="startSession(activity)">
+      Get session summary
+    </button>
+    </form> 
+    <br> -->
+
+    <div class="list">
+      <div class="item item-header">
+        <h2>Recently viewed:</h2>
+      </div>
+      <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" href="#/tab/pastsessions/Physics class">
+        Physics class
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" href="#/tab/pastsessions/Digital World">
+        101 Digital World 21/07
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" href="#/tab/pastsessions/Linear Algebra">
+        102 Linear Algebra 20/07
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </div>
+
+
+  </ion-content>
+</ion-view>

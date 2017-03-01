@@ -1,0 +1,38 @@
+<ion-view view-title="{{ session.activity }}">
+  <ion-content>
+
+    <!-- this is the chart! woohoo -->
+    <div style="height:30vh; margin:10px;">
+      <nvd3 options="vm.options" data="vm.data"></nvd3>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.high.col }};">{{ attn.high.value }}</span>
+        <p class="smalltext"><br>High<br>({{ attn.high.time }}h)</p>
+      </div>
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.avg.col }};">{{ attn.avg.value }}</span>
+        <p class="smalltext"><br>Session average</p>
+      </div>
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.low.col }};">{{ attn.low.value > 10? attn.low.value : "&nbsp;"+attn.low.value+"&nbsp;" }}</span>
+        <p class="smalltext"><br>Low<br>({{ attn.low.time }}h)</p>
+      </div>
+    </div>
+
+    <div class="row" style="text-align:center; width:270px;">
+      <div class="col" style="border-right:1px solid #ddd">
+        {{ session.startTime | date : 'd MMM, HHmm' }}h
+        <p class="smalltext">Start time</p>
+      </div>
+      <div class="col">
+        {{ session.runTime/60 | number:0 }}min {{ session.runTime%60 }}s
+        <p class="smalltext">Run time</p>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

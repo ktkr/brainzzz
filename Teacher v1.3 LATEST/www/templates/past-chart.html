@@ -1,0 +1,37 @@
+<ion-view view-title="{{ activityName }}">
+  <ion-content>
+
+    <!-- this is the chart! woohoo -->
+    <div style="height:30vh; margin:10px;">
+      <nvd3 options="vm.options" data="vm.data"></nvd3>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.high.col }};">{{ attn.high.value }}</span>
+        <p class="smalltext"><br>High<br>({{ attn.high.time }}h)</p>
+      </div>
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.avg.col }};">{{ attn.avg.value }}</span>
+        <p class="smalltext"><br>Class<br>average</p>
+      </div>
+      <div class="col">
+        <span class="attncircle" style="background: #{{ attn.low.col }};">{{ attn.low.value > 10? attn.low.value : "&nbsp;"+attn.low+"&nbsp;" }}</span>
+        <p class="smalltext"><br>Low<br>({{ attn.low.time }}h)</p>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        View individual student
+      </div>
+      <ion-item class="item-remove-animate item-icon-right item-avatar" type="item-text-wrap" ng-repeat="stud in studList" href="#/tab/pastsessions/{{activityName}}/{{stud.id}}">
+        <img src={{stud.photo}}>
+        <h2>{{stud.name}}</h2>
+        <p>Session average: {{stud.avg}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </div>
+
+  </ion-content>
+</ion-view>

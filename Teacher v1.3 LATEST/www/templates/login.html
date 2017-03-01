@@ -1,0 +1,19 @@
+<ion-view view-title="Login" hide-nav-bar="true">
+	<ion-content class="padding" style="position:absolute; background:#ecfceb;">
+
+        <center>
+        <form class="list list-inset" ng-submit="verify(loginDetails)">
+            <img src="img/accteacher.png" style="width:80%; margin-top:8vh; margin-bottom:4vh;">
+            <label class="item item-input" style="border: none; border-bottom:4px solid #ecfceb; opacity:0.9;">
+                <input type="text" placeholder="Class" ng-model="loginDetails.ClassNumber" >
+            </label>
+            <label class="item item-input" style="border:none; opacity:0.9;">
+                <input type="text" placeholder="Admin key" ng-model="loginDetails.AdminKey">
+            </label>
+            <p ng-show="loginAttempt==false" style="color:#999; padding-top:5px; text-align:left;">*Invalid Class or Admin key</p>
+            <button class="button button-block button-balanced" type="submit">Login</button>
+            <p style="text-align:right; color:#999;">First time here? <a href="" style="color:#48be6d">Get started</a></p>
+        </form>
+        </center>
+	</ion-content>
+</ion-view>

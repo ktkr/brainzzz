@@ -1,0 +1,33 @@
+<ion-view view-title="Account" hide-nav-bar="true">
+  <div class="bar bar-header bar-dark item-icon-right">
+		<img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+	</div>
+	<ion-content style="position:absolute; top:40px;">
+
+			<div style="text-align:center; padding-top:10vh; padding-bottom:5vh;">
+				<img src="img/ben.png" style="width:30%; border-radius:50%;">
+				<h4 style="line-height:30%;">{{ specialLogin.ClassNumber }}</h4>
+			</div>
+
+	<div class="list">
+				<ion-item class="item item-divider" border:none;">
+					<h2>Options</h2>
+				</ion-item>
+				<ion-item class="item item-icon-left" type="item-text-wrap" ng-click="">
+					<i class="icon ion-trophy"></i>
+					View stats
+					<span class="badge badge-assertive">2</span>
+				</ion-item>
+				<ion-item class="item item-icon-left" type="item-text-wrap" ng-click="">
+					<i class="icon ion-gear-a"></i>
+					Settings
+				</ion-item>
+				<ion-item class="item item-icon-left" type="item-text-wrap" ng-click="logout()">
+					<i class="icon ion-power"></i>
+					Log out
+				</ion-item>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

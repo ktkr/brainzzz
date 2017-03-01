@@ -1,0 +1,51 @@
+/* Empty. Add your own CSS if you like */
+
+form {
+	width:80%;
+	background:inherit !important;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.row {
+	width:270px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.smalltext {
+	color:#666; font-size:12px; line-height:15px;
+}
+
+.attncircle {
+	border-radius:50%; padding:12px; font-size:16px;
+}
+
+.button-calm {
+	background-color:#00c5cd !important;
+}
+
+.button-balanced {
+	background-color:#48be6d !important;
+}
+
+.button-block {
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.item-divider,.item-header {
+	background-color:#cce9ed;
+	border:none !important;
+}
+
+.ion-chevron-right {
+	color:#00c5cd !important;
+}
+
+.item {
+	border:1px solid #eee;
+}
+

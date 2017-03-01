@@ -1,0 +1,22 @@
+<ion-view view-title="History" hide-nav-bar="true" cache-view="false">
+  <div class="bar bar-header bar-dark item-icon-right">
+    <img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+    <h1 class="title"></h1> <!-- needed for the refresh button to be right-aligned -->
+    <button class="button button-icon ion-ios-refresh-empty" style="opacity:{{opacity}}; transition: 1s opacity;" ng-click="getAllSessions()"></button>
+  </div>
+
+  <ion-content style="position:absolute; top:40px;">
+
+    <ion-list>
+      <ion-item class="item-header"><h2>Select session to view:</h2></ion-item>
+
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="item in sessionsList" type="item-text-wrap" href="#/tab/history/{{item.number}}">
+      <p>{{ item.activity }} ({{ item.startTime | date : 'd MMM yyyy, h:mma'}})</p>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+    
+    <div ng-hide="specialLogin" style="color:grey; text-align:center;"><br><br>No sessions found. Please login.</div>
+
+   </ion-content>
+</ion-view>

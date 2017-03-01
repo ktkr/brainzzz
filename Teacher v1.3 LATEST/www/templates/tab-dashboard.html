@@ -1,0 +1,46 @@
+<ion-view view-title="Past sessions" hide-nav-bar="true">
+  <div class="bar bar-header bar-dark item-icon-right">
+    <img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+  </div>
+  <ion-content style="position:absolute; top:40px;">
+  
+    <form class="list" ng-hide="viewingSession">
+      <br><br><br>
+      <h4 style="text-align:center;">View ongoing session</h4><br>
+      <label class="item item-input">
+      <input type="text" ng-model="activity" placeholder="Lesson or activity (eg. Math class)">
+      </label>
+    
+    <button class="button button-balanced button-block" ng-click="RTstart(activity)">
+      View session
+    </button>
+    </form>
+
+    <div ng-show="viewingSession">
+      <div class="item" style="text-align:center; transition: 1s; background: #{{ avgattention>80? '83d99b' : ( avgattention>60? 'cdf066': ( avgattention>40? 'fded63':(avgattention>20? 'fdc575':'fd6666')))}}; padding:30px;">
+        <p style="color: white; opacity:0.8;">Current session:<br></p>
+        <p style="color: white;">{{ activity ? activity : "Digital world 2107"}}</p><br>
+        
+        <center><div style="border-radius: 50%; width: 180px; height: 180px; padding-top:30px; border: 8px double rgba(255,255,255,0.8);}}; transition:1s; font-size:50px; color:white;">
+        <p style="font-size:25px; color:#fff; opacity:0.95"><i class="icon ion-android-bulb"></i><br><br></p>
+        {{ avgattention | number: 0 }}
+        </div></center>
+      </div>
+
+      <!-- <div class="item">Insert graph here</div> -->
+
+      <div class="list">
+        <ion-item class="item-avatar" type="item-text-wrap"  ng-repeat="stud in studList">
+          <img src="img/siyan.png">
+          <h2>{{stud.name}}</h2>
+          <p>Attention: {{stud.attn}}</p>
+        </ion-item>
+      </div>
+
+      <button class="button button-dark button-block" style="width:80%" ng-click="RTend()">
+        End session
+      </button>
+    </div>
+
+  </ion-content>
+ </ion-view>

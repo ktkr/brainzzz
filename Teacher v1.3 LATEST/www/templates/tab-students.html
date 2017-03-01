@@ -1,0 +1,24 @@
+<!--In this page, the server should retrieve the number of classmates, create a list based on the number and a click event 
+results in the webpage refreshing to a particular student's sessions.-->
+<ion-view view-title="Students" hide-nav-bar="true" cache-view="false">
+  <div class="bar bar-header bar-dark item-icon-right">
+    <img class="icon" style="position:absolute; left:10px; top:10px; height:20px;" src="img/naoshiheaderlogo.png">
+    <h1 class="title"></h1> <!-- needed for the refresh button to be right-aligned -->
+    <button class="button button-icon ion-ios-refresh-empty" style="opacity:{{opacity}}; transition: 1s opacity;" ng-click="getAllStudents()"></button>
+  </div>
+
+  <ion-content style="position:absolute; top:40px;">
+    <ion-list>
+      <div class="item item-header">
+        <h2>Select student to view:</h2>
+      </div>
+      <ion-item class="item-remove-animate item-icon-right item-avatar" ng-repeat="item in studentList" type="item-text-wrap" href="#/tab/Students/{{item.id}}">
+      <img src="{{item.photo}}" style="border-radius:50%;">
+        <h2>{{item.Name}}</h2>
+        <p>Last session: {{item.lastSession}}</p>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+     <div ng-hide="specialLogin" style="color:grey; text-align:center;"><br><br>No sessions found. Please login.</div>
+   </ion-content>
+</ion-view>

@@ -1,0 +1,2 @@
+changed ui.js target lib instead of libs
+added a try clause in the getAllSessions() so that it won't throw a long error when unlogged user tries to refresh
